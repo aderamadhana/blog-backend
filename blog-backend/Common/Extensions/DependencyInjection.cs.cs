@@ -1,5 +1,6 @@
 ﻿using blog_backend.Data;
 using blog_backend.Domain.Entities;
+using blog_backend.Repositories.Interfaces;
 using blog_backend.Services.Implementations;
 using blog_backend.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -46,6 +47,9 @@ public static class DependencyInjection
             });
 
         services.AddAuthorization();
+
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
+        services.AddScoped<ICategoryService, CategoryService>();
 
         return services;
     }
