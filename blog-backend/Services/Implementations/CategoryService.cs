@@ -75,5 +75,10 @@ namespace blog_backend.Services.Implementations
             Slug = c.Slug,
             CreatedAt = c.CreatedAt
         };
+
+        public object CreateAsync(Tag tag)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

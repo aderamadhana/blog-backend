@@ -1,4 +1,5 @@
-﻿using blog_backend.DTOs.Categories;
+﻿using blog_backend.Domain.Entities;
+using blog_backend.DTOs.Categories;
 
 namespace blog_backend.Services.Interfaces
 {

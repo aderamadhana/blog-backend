@@ -1,6 +1,7 @@
 ﻿using blog_backend.Data;
 using blog_backend.Domain.Entities;
 using blog_backend.Repositories.Interfaces;
+using blog_backend.Repositories.Interfaces.Tags;
 using blog_backend.Services.Implementations;
 using blog_backend.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -31,8 +32,13 @@ public static class DependencyInjection
         var jwt = config.GetSection("Jwt");
         var key = jwt["Key"]!;
 
-        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(opt =>
+        services.AddAuthentication(options =>
+        { 
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+        })
+             .AddJwtBearer(opt =>
             {
                 opt.TokenValidationParameters = new TokenValidationParameters
                 {
@@ -50,6 +56,9 @@ public static class DependencyInjection
 
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<ICategoryService, CategoryService>();
+
+        services.AddScoped<ITagRepository, TagRepository>();
+        services.AddScoped<ITagService, TagService>();
 
         return services;
     }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace blog_backend.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CategoriesController : ControllerBase
@@ -64,7 +65,7 @@ namespace blog_backend.Controllers
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             await _service.DeleteAsync(id);
-            return NoContent();
+            return Ok("Data deleted successfully");
         }
     }
 }

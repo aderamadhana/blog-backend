@@ -12,6 +12,7 @@ namespace blog_backend.Data
         }
 
         public DbSet<Category> Categories { get; set; } = null!;
+        public DbSet<Tag> Tags { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
